@@ -13,4 +13,9 @@ class Program extends Model
     {
         return $this->belongsTo(Faculty::class);
     }
+
+    public function subject()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }
