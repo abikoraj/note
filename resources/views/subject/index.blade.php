@@ -142,7 +142,6 @@
                                             class="btn btn-secondary text-white">View</a> --}}
                                     </td>
                                 </form>
-
                             </tr>
                         @endforeach
 

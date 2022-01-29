@@ -36,4 +36,9 @@ class ProgramController extends Controller
     {
         return view('subject.index', ['program' => $program]);
     }
+
+    public function front(Program $program)
+    {
+        return view('subject.front', ['program' => $program]);
+    }
 }

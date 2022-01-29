@@ -17,6 +17,9 @@ class UniversityController extends Controller
     public function submit(Request $request)
     {
         $university = new University();
+        if ($request->hasFile('logo')) {
+            $university->logo = $request->logo->store('data/uni-logo');
+        }
         $university->name = $request->name;
         // dd($university);
         $university->save();
@@ -25,8 +28,11 @@ class UniversityController extends Controller
 
     public function update(University $university, Request $request)
     {
+        if ($request->hasFile('logo')) {
+            $university->logo = $request->logo->store('data/uni-logo');
+        }
         $university->name = $request->name;
-        $university->save();
+        // $university->save();
         return redirect()->back()->with('message', 'University Edited Successfully!');
     }
 
@@ -39,5 +45,16 @@ class UniversityController extends Controller
     public function view(University $university)
     {
         return view('faculty.index', ['uni' => $university]);
+    }
+
+    public function list()
+    {
+        $uni = DB::table('universities')->get();
+        return view('university.app', ['univ' => $uni]);
+    }
+
+    public function front(University $university)
+    {
+        return view('faculty.front', ['uni' => $university]);
     }
 }

@@ -19,6 +19,10 @@
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('assets/css/portal.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/dropify/css/dropify.min.css') }}">
+
+    @yield('css')
+
 </head>
 
 <body class="app">
@@ -55,6 +59,13 @@
 
     <!-- Page Specific JS -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('assets/dropify/js/dropify.min.js') }}"></script>
+
+    @yield('js')
+
 
 </body>
 

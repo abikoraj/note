@@ -1,19 +1,25 @@
 @extends('layout.app')
+
 @section('content')
     <div class="container-xl">
         <h1 class="app-page-title">Universities</h1>
     </div>
     <div class="app-card app-card-notification shadow-sm mb-4">
         <div class="app-card-header px-4 py-3">
-            <form action="{{ route('university.submit') }}" method="POST">
+            <form action="{{ route('university.submit') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3 align-items-center">
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-1">
+                        <label>University Logo</label>
+                        <input type="file" class="dropify" id="dropify-event" name="logo"
+                            placeholder="University Logo" required>
+                    </div>
+                    <div class="col-md-9">
                         <label class="sr-only" for="signup-email">University Name</label>
                         <input name="name" type="text" class="form-control signup-name" placeholder="University Name"
                             required>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <button type="submit" class="btn btn-primary w-100 text-white">Add</button>
                     </div>
                 </div>
@@ -29,6 +35,7 @@
                     <thead>
                         <tr>
                             <th class="cell">S.N.</th>
+                            <th class="cell">Logo</th>
                             <th class="cell">Universities</th>
                             <th class="cell">Actions</th>
                         </tr>
@@ -36,10 +43,17 @@
                     <tbody>
                         @foreach ($uni as $item)
                             <tr>
-                                <form action="{{ route('university.update', ['university' => $item->id]) }}"
-                                    method="POST">
+                                <form action="{{ route('university.update', ['university' => $item->id]) }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <td class="cell">{{ $item->id }}</td>
+                                    <td class="cell">
+                                        <div class="col-md-12">
+                                            <input type="file" class="dropifyEdit" id="dropify-event" name="logo"
+                                                data-default-file="{{ asset($item->logo) }}"
+                                                value="{{ asset($item->logo) }}">
+                                        </div>
+                                    </td>
                                     <td class="cell">
                                         <div class="col-md-12">
                                             <label class="sr-only" for="signup-email">University Name</label>
@@ -67,4 +81,12 @@
         </div>
         <!--//app-card-body-->
     </div>
+@endsection
+
+@section('js')
+
+    <script>
+        $('.dropify').dropify();
+        $('.dropifyEdit').dropify();
+    </script>
 @endsection

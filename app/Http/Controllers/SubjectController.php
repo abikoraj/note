@@ -37,4 +37,9 @@ class SubjectController extends Controller
         $subject->delete();
         return back()->with('message', 'Subject Deleted Successfully!');
     }
+
+    public function front(Subject $subject)
+    {
+        return view('Note.front', ['subject' => $subject]);
+    }
 }

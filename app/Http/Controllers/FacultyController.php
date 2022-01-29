@@ -36,4 +36,9 @@ class FacultyController extends Controller
     {
         return view('Program.index', ['faculty' => $faculty]);
     }
+
+    public function front(Faculty $faculty)
+    {
+        return view('Program.front', ['faculty' => $faculty]);
+    }
 }
