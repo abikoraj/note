@@ -32,7 +32,7 @@ class UniversityController extends Controller
             $university->logo = $request->logo->store('data/uni-logo');
         }
         $university->name = $request->name;
-        // $university->save();
+        $university->save();
         return redirect()->back()->with('message', 'University Edited Successfully!');
     }
 

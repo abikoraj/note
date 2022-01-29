@@ -4,9 +4,15 @@
         <span class="title">
             Title
         </span>
-        <span class="float-end">
-            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
-                Note</button>
+        <span class="float-end me-2">
+            @if (Auth::user())
+                <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+                    Note
+                </button>
+            @else
+                <a href="{{ route('user.login') }}" class="btn btn-outline-success">Login</a>
+                <a href="{{ route('user.register') }}" class="btn btn-outline-info">Sign Up</a>
+            @endif
         </span>
     </div>
     <div class="jumbotrun">

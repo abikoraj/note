@@ -37,11 +37,12 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::match(['get', 'post'], '/register', [AdminController::class, 'register'])->name('register');
 });
 
-// Route::middleware(['role:2'])->group(function () {
-Route::prefix('note')->name('note.')->group(function () {
-    Route::match(['get', 'post'], '/add/{type}', [NoteController::class, 'add'])->name('add');
+Route::middleware(['role:2'])->group(function () {
+    Route::prefix('note')->group(function () {
+        Route::match(['get', 'post'], '/add/{type}', [NoteController::class, 'add'])->name('note.add');
+        Route::post('/file/add', [NoteController::class, 'fileAdd'])->name('file.upload');
+    });
 });
-// });
 
 Route::middleware(['role:1'])->group(function () {
 
